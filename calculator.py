@@ -37,3 +37,10 @@ class Calculator(object):
 	def divide_by_x(self, x_value):
 		self._inv_value = 1/x_value
 
+class Command(object):
+	
+	def execute(self):
+		raise NotImplementedError()
+
+	def undo(self):
+		raise NotImplementedError()
