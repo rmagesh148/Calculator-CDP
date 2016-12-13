@@ -157,41 +157,43 @@ class Application(object):
 					add_object = Addition(calc, input_commands[0])
 					user.store_and_execute(add_object)
 					input_commands.pop(0)
+				
+					for value in range(0, len(input_commands), 2):
+						if input_commands[value] == '+':
+							if value < len(input_commands):
+								add_object = Addition(calc, input_commands[value + 1])
+								user.store_and_execute(add_object)
+								
+						if input_commands[value] == '-':
+							if value < len(input_commands):
+								sub_object = Subtraction(calc, input_commands[value + 1])
+								user.store_and_execute(sub_object)
+								
+						if input_commands[value] == '*':
+							if value < len(input_commands):
+								mul_object = Multiplication(calc, input_commands[value + 1])
+								user.store_and_execute(mul_object)
+								
+						if input_commands[value] == '/':
+							if value < len(input_commands):
+								div_object = Division(calc, input_commands[value + 1])
+								user.store_and_execute(div_object)
+					
+					print "************************************************"
+					if (isinstance(calc.total, int)):
+						print "Total Value Evaluated to {0} ".format(calc.total)
+					else:		
+						print "Total Value Evaluated to {0:.15f} ".format(calc.total)
+					print "************************************************"
+					input_commands = []
+				
 				else:
 					print "RaiseError: Type The Number First Always!"
 					print "Please enter from Scratch!!"
 					del input_commands[:]
+			
 			else:
 				print "No commands entered!"
-			
-			for value in range(0, len(input_commands), 2):
-				if input_commands[value] == '+':
-					if value < len(input_commands):
-						add_object = Addition(calc, input_commands[value + 1])
-						user.store_and_execute(add_object)
-						
-				if input_commands[value] == '-':
-					if value < len(input_commands):
-						sub_object = Subtraction(calc, input_commands[value + 1])
-						user.store_and_execute(sub_object)
-						
-				if input_commands[value] == '*':
-					if value < len(input_commands):
-						mul_object = Multiplication(calc, input_commands[value + 1])
-						user.store_and_execute(mul_object)
-						
-				if input_commands[value] == '/':
-					if value < len(input_commands):
-						div_object = Division(calc, input_commands[value + 1])
-						user.store_and_execute(div_object)
-			
-			print "************************************************"
-			if (isinstance(calc.total, int)):
-				print "Total Value Evaluated to {0} ".format(calc.total)
-			else:		
-				print "Total Value Evaluated to {0:.15f} ".format(calc.total)
-			print "************************************************"
-			input_commands = []
 
 		else:
 			if clear_list:
@@ -251,3 +253,4 @@ class Application(object):
 					input_commands.append(input_value)
 				else:
 					print "'+', '-', '*', '/' Only These Symbols Are Allowed and Numbers are allowed"
+				
