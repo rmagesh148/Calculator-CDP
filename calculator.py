@@ -1,7 +1,9 @@
 import math
 
 class Calculator(object):
-	
+	"""
+	Desc: Calculator class - a receiver class which takes the input and returs the evaluated value
+	"""
 	def __init__(self):
 		self._total = 0
 		self._inv_value = 0
@@ -38,7 +40,9 @@ class Calculator(object):
 		self._inv_value = 1/x_value
 
 class Command(object):
-	
+	"""
+	Desc: Command class - an inteface class
+	"""
 	def execute(self):
 		raise NotImplementedError()
 
@@ -46,9 +50,9 @@ class Command(object):
 		raise NotImplementedError()
 
 class Addition(Command):
-"""
-Desc: Addition class invokes the addition method in Calculator to execute
-"""
+	"""
+	Desc: Addition class invokes the addition method in Calculator to execute
+	"""
 	def __init__(self, calc, value):
 		self._calc = calc
 		self._value = value
@@ -58,9 +62,9 @@ Desc: Addition class invokes the addition method in Calculator to execute
 		self._calc.addition(self._value)
 
 class Subtraction(Command):
-"""
-Desc: Subtraction class invokes the subtraction method in Calculator to execute
-"""
+	"""
+	Desc: Subtraction class invokes the subtraction method in Calculator to execute
+	"""
 	def __init__(self, calc, value):
 		self._value = value
 		self._calc = calc
@@ -71,9 +75,9 @@ Desc: Subtraction class invokes the subtraction method in Calculator to execute
 
 
 class Multiplication(Command):
-"""
-Desc: Multiplication class invokes the multiplication method in Calculator to execute
-"""
+	"""
+	Desc: Multiplication class invokes the multiplication method in Calculator to execute
+	"""
 	def __init__(self, calc, value):
 		self._value = value
 		self._calc = calc
@@ -83,9 +87,9 @@ Desc: Multiplication class invokes the multiplication method in Calculator to ex
 
 
 class Division(Command):
-"""
-Desc: Division class invokes the division method in Calculator to execute
-"""
+	"""
+	Desc: Division class invokes the division method in Calculator to execute
+	"""
 	def __init__(self, calc, value):
 		self._value = value
 		self._calc = calc
@@ -94,9 +98,9 @@ Desc: Division class invokes the division method in Calculator to execute
 		self._calc.division(self._value)
 
 class Inverse(Command):
-"""
-Desc: Inverse class invokes the divide_by_x method in Calculator to execute
-"""
+	"""
+	Desc: Inverse class invokes the divide_by_x method in Calculator to execute
+	"""
 	def __init__(self, calc, value):
 		self._value = value
 		self._calc = calc
@@ -106,9 +110,9 @@ Desc: Inverse class invokes the divide_by_x method in Calculator to execute
 		self._calc.divide_by_x(self._value)
 
 class Factorial(Command):
-"""
-Desc: Factorial class invokes the factorial method in Calculator to execute
-"""
+	"""
+	Desc: Factorial class invokes the factorial method in Calculator to execute
+	"""
 	def __init__(self, calc, value):
 		self._value = value
 		self._calc = calc
@@ -118,9 +122,9 @@ Desc: Factorial class invokes the factorial method in Calculator to execute
 		self._calc.factorial(self._value)
 
 class CalculatorInvoker(object):
-"""
-Desc: Invoker class invokes the commands(each expression) to execute
-"""
+	"""
+	Desc: Invoker class invokes the commands(each expression) to execute
+	"""
 	def __init__(self):
 		pass
 
