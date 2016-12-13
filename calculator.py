@@ -116,3 +116,13 @@ Desc: Factorial class invokes the factorial method in Calculator to execute
 
 	def execute(self):
 		self._calc.factorial(self._value)
+
+class CalculatorInvoker(object):
+"""
+Desc: Invoker class invokes the commands(each expression) to execute
+"""
+	def __init__(self):
+		pass
+
+	def store_and_execute(self, invoker_object):
+		invoker_object.execute()
