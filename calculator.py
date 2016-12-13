@@ -44,3 +44,75 @@ class Command(object):
 
 	def undo(self):
 		raise NotImplementedError()
+
+class Addition(Command):
+"""
+Desc: Addition class invokes the addition method in Calculator to execute
+"""
+	def __init__(self, calc, value):
+		self._calc = calc
+		self._value = value
+			
+
+	def execute(self):
+		self._calc.addition(self._value)
+
+class Subtraction(Command):
+"""
+Desc: Subtraction class invokes the subtraction method in Calculator to execute
+"""
+	def __init__(self, calc, value):
+		self._value = value
+		self._calc = calc
+			
+
+	def execute(self):
+		self._calc.subtraction(self._value)
+
+
+class Multiplication(Command):
+"""
+Desc: Multiplication class invokes the multiplication method in Calculator to execute
+"""
+	def __init__(self, calc, value):
+		self._value = value
+		self._calc = calc
+
+	def execute(self):
+		self._calc.multiplication(self._value)
+
+
+class Division(Command):
+"""
+Desc: Division class invokes the division method in Calculator to execute
+"""
+	def __init__(self, calc, value):
+		self._value = value
+		self._calc = calc
+
+	def execute(self):
+		self._calc.division(self._value)
+
+class Inverse(Command):
+"""
+Desc: Inverse class invokes the divide_by_x method in Calculator to execute
+"""
+	def __init__(self, calc, value):
+		self._value = value
+		self._calc = calc
+			
+
+	def execute(self):
+		self._calc.divide_by_x(self._value)
+
+class Factorial(Command):
+"""
+Desc: Factorial class invokes the factorial method in Calculator to execute
+"""
+	def __init__(self, calc, value):
+		self._value = value
+		self._calc = calc
+			
+
+	def execute(self):
+		self._calc.factorial(self._value)
