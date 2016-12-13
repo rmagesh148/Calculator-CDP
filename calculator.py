@@ -1,4 +1,5 @@
 import math
+from __future__ import division
 
 class Calculator(object):
 	"""
@@ -291,4 +292,3 @@ class Application(object):
 						print "Always Enter the First Value as Number"
 						del input_commands[:]
 						print "Enter the value from scratch!!"
-				
