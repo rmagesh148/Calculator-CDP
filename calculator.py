@@ -143,9 +143,11 @@ class Application(object):
 
 	clear_list = False
 
+	error_flag = False
+	
 	while True:
 		calc = Calculator()
-
+		
 		input_value = raw_input('Enter the expression one by one please: ')
 		
 		if input_value == 'Q':
@@ -161,35 +163,59 @@ class Application(object):
 					add_object = Addition(calc, input_commands[0])
 					user.store_and_execute(add_object)
 					input_commands.pop(0)
-				
+					 
 					for value in range(0, len(input_commands), 2):
 						if input_commands[value] == '+':
 							if value < len(input_commands):
-								add_object = Addition(calc, input_commands[value + 1])
-								user.store_and_execute(add_object)
+								if isinstance(input_commands[value + 1], int):
+									add_object = Addition(calc, input_commands[value + 1])
+									user.store_and_execute(add_object)
+								else:
+									error_flag = True
+									break
 								
 						if input_commands[value] == '-':
 							if value < len(input_commands):
-								sub_object = Subtraction(calc, input_commands[value + 1])
-								user.store_and_execute(sub_object)
+								if isinstance(input_commands[value + 1], int):
+									sub_object = Subtraction(calc, input_commands[value + 1])
+									user.store_and_execute(sub_object)
+								else:
+									error_flag = True
+									break
 								
 						if input_commands[value] == '*':
 							if value < len(input_commands):
-								mul_object = Multiplication(calc, input_commands[value + 1])
-								user.store_and_execute(mul_object)
+								if isinstance(input_commands[value + 1], int):
+									mul_object = Multiplication(calc, input_commands[value + 1])
+									user.store_and_execute(mul_object)
+								else:
+									error_flag = True
+									break
 								
 						if input_commands[value] == '/':
 							if value < len(input_commands):
-								div_object = Division(calc, input_commands[value + 1])
-								user.store_and_execute(div_object)
+								if isinstance(input_commands[value + 1], int):
+									div_object = Division(calc, input_commands[value + 1])
+									user.store_and_execute(div_object)
+								else:
+									error_flag = True
+									break
+						
+						if isinstance(input_commands[value], int) or isinstance(input_commands[value], float):
+							error_flag = True
+							break
 					
-					print "************************************************"
-					if (isinstance(calc.total, int)):
-						print "Total Value Evaluated to {0} ".format(calc.total)
-					else:		
-						print "Total Value Evaluated to {0:.15f} ".format(calc.total)
-					print "************************************************"
-					input_commands = []
+					if not error_flag:
+						print "************************************************"
+						if (isinstance(calc.total, int)):
+							print "Total Value Evaluated to {0} ".format(calc.total)
+						else:		
+							print "Total Value Evaluated to {0:.15f} ".format(calc.total)
+						print "************************************************"
+						input_commands = []
+					else:
+						error_flag = False
+						print "Something went wrong while inputting the values, please Enter The expressions one after the other, Thank you!"
 				
 				else:
 					print "RaiseError: Type The Number First Always!"
@@ -257,4 +283,12 @@ class Application(object):
 					input_commands.append(input_value)
 				else:
 					print "'+', '-', '*', '/' Only These Symbols Are Allowed and Numbers are allowed"
+				
+				if len(input_commands) > 0:
+					if isinstance(input_commands[0], int) or isinstance(input_commands[0], float):
+						pass
+					else:
+						print "Always Enter the First Value as Number"
+						del input_commands[:]
+						print "Enter the value from scratch!!"
 				
